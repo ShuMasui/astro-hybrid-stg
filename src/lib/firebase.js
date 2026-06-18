@@ -3,12 +3,13 @@ import { getAuth, connectAuthEmulator } from "firebase/auth";
 
 // エミュレータを使用するため、設定値はデモ用のダミー値で問題ありません
 const firebaseConfig = {
-  apiKey: "demo-astro-auth-key",
-  authDomain: "demo-astro-auth.firebaseapp.com",
-  projectId: "demo-astro-auth",
-  storageBucket: "demo-astro-auth.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:1234567890abcdef"
+  apiKey: "AIzaSyDH3rAheNfzPxX7PIbDD6wgcNttROh0xwU",
+  authDomain: "astro-hybrid-stg.firebaseapp.com",
+  projectId: "astro-hybrid-stg",
+  storageBucket: "astro-hybrid-stg.firebasestorage.app",
+  messagingSenderId: "770975578599",
+  appId: "1:770975578599:web:c071781bd065a38403a542",
+  measurementId: "G-6TBYJKYND9"
 };
 
 // AstroのSSR対応（サーバー側で多重初期化されるのを防ぐ）
