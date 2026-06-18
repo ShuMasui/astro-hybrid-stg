@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// フロントマター（ビルド時に実行されるサーバーサイドJavaScript/TypeScript領域）
+const pageTitle = "私について";
+const identity = {
+  firstName: "たろう",
+  country: "日本",
+  occupation: "Web開発者",
+  hobbies: ["コーディング", "サウナ", "写真"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "Astro", "Tailwind CSS"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+---
+
+<Layout>
+  <main class="min-h-screen bg-slate-900 text-slate-100 flex flex-col items-center justify-center p-6">
+    <div class="max-w-md w-full bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-700">
+      
+      <!-- タイトルの表示 (変数の埋め込み) -->
+      <h1 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 mb-6">
+        {pageTitle}
+      </h1>
+
+      <p class="text-slate-300 mb-4">
+        Astro のフロントマターで定義した変数やオブジェクトを使って、このページを構築しています。
+      </p>
+
+      <!-- オブジェクトデータの表示 -->
+      <ul class="space-y-2 mb-6">
+        <li>👤 名前: <span class="font-semibold text-teal-300">{identity.firstName}</span></li>
+        <li>📍 国: {identity.country}</li>
+        <li>💼 職業: {identity.occupation}</li>
+        {identity.hobbies.length >= 2 && (
+          <li>🎨 趣味: {identity.hobbies.join(', ')}</li>
+        )}
+      </ul>
+
+      <!-- 配列のループ表示 (map 関数の使用) -->
+      <h2 class="text-xl font-bold text-teal-400 mb-3">スキル</h2>
+      <div class="flex flex-wrap gap-2 mb-6">
+        {skills.map((skill) => (
+          <span class="px-3 py-1 bg-teal-900/50 text-teal-300 border border-teal-800 rounded-full text-sm font-medium">
+            {skill}
+          </span>
+        ))}
+      </div>
+
+      <!-- 条件分岐のテスト -->
+      <div class="border-t border-slate-700 pt-4 text-sm text-slate-400 space-y-1">
+        {happy && <p>😄 Astroの学習を楽しんでいます！</p>}
+        {finished && <p>✅ このチュートリアルは完了しました！</p>}
+        {goal === 3 ? <p>🎯 目標は3日以内の習得です。</p> : <p>🎯 目標はまだ決まっていません。</p>}
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/" class="text-teal-400 hover:text-teal-300 hover:underline transition">
+          ← トップページに戻る
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

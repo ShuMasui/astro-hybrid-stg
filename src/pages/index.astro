@@ -1,11 +1,75 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <main class="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-6 relative overflow-hidden font-sans">
+    
+    <!-- バックグラウンドの光彩エフェクト -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl w-full z-10 space-y-12">
+      <!-- ヘッダー -->
+      <div class="text-center space-y-4">
+        <span class="px-4 py-1.5 bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-full text-xs font-semibold tracking-wider uppercase">
+          Astro 専門レッスンへようこそ
+        </span>
+        <h1 class="text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-400 to-indigo-400">
+          Astro 基礎 ＆ SSR ハンズオン
+        </h1>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+          フロントマターによる静的生成の基礎から、動的なサーバーサイドレンダリング（SSR）の実装までをステップバイステップで学びましょう。
+        </p>
+      </div>
+
+      <!-- カードセクション -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- レッスン1: フロントマターとルーティング -->
+        <a href="/about" class="group block p-6 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-teal-500/50 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-teal-500/5">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-teal-400 font-mono text-sm font-bold uppercase tracking-wider">Lesson 01</span>
+            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/20">
+              公開中
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-100 group-hover:text-teal-300 transition-colors mb-2">
+            フロントマター ＆ 基礎ルーティング
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Astroの特徴であるフロントマター（コードフェンス）で定義したJavaScript変数をHTMLテンプレートに埋め込み、動的なページ生成を体験します。
+          </p>
+          <div class="text-teal-400 font-semibold text-sm flex items-center group-hover:translate-x-1 transition-transform">
+            レッスンを開始する <span class="ml-1">→</span>
+          </div>
+        </a>
+
+        <!-- レッスン2: SSR (サーバーサイドレンダリング) -->
+        <a href="/ssr" class="group block p-6 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-indigo-500/5">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-indigo-400 font-mono text-sm font-bold uppercase tracking-wider">Lesson 02</span>
+            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/20">
+              公開中
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-100 group-hover:text-indigo-300 transition-colors mb-2">
+            SSR (Server-Side Rendering)
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Astroのアダプターを導入し、レンダリングモードを切り替えます。リクエストごとにサーバーでコードを実行し、リアルタイムデータを取得・表示します。
+          </p>
+          <div class="text-indigo-400 font-semibold text-sm flex items-center group-hover:translate-x-1 transition-transform">
+            レッスンを開始する <span class="ml-1">→</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- 現在のステータスフッター -->
+      <div class="text-center pt-8 border-t border-slate-900 text-xs text-slate-500">
+        Workspace: <code class="text-slate-400">astro-hybrid-stg</code> • Astro v6.4.7
+      </div>
+    </div>
+  </main>
 </Layout>
