@@ -5,14 +5,14 @@ import node from '@astrojs/node';
 
 import react from '@astrojs/react';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
   // デフォルトは静的生成（SSG）、必要なページだけSSRにする設定
   output: 'static',
 
-  adapter: node({
-    mode: 'standalone'
-  }),
+  adapter: cloudflare(),
 
   vite: {
     plugins: [tailwindcss()]
