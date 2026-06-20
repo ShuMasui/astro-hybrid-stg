@@ -1,0 +1,97 @@
+---
+
+import { lazy } from "astro:schema";
+import Layout from "../layouts/Layout.astro";
+
+const error = null;
+// const user = null ;
+const user = {
+    name: "トトロ",
+    email: "totoropforest@xample.com",
+    country: "日本（埼玉）",
+    age: "1302",
+    avatar: "https://picsum.photos/200"
+}
+
+---
+
+
+<Layout>
+    <main class="min-h-screen bg-slate-950 text-slate-100 flex justify-center items-center p-6 font-sans">
+        <!-- プロフィールカード -->
+        <div class="w-full max-w-md bg-slate-900 rounded-xl p-8 mx-auto flex flex-col border border-slate-100">
+            
+            { error ? (
+                <>
+                    <div class="mb-4">
+                        <p>エラーが発生しました</p>
+                    </div>
+                </>
+            ) : user ? (
+                <>
+                    <div class="text-2xl leading-relaxed tracking-widest mb-4 font-bold">
+                        About Me
+                    </div>
+                    
+                    <!-- メンバー情報エリア -->
+                    <div class="flex flex-row items-center mb-8">
+                        <!-- アバダーの画像エリア -->
+                        <div class="relative w-14 h-14 rounded-full overflow-hidden mr-8">
+                            <img 
+                                src={user.avatar} 
+                                alt={user.name + "'s avator image"} 
+                                class="w-full h-full object-cover"
+                            />
+                            <div class="absolute inset-0 bg-black/50"></div>
+                        </div>
+                        <div class="flex flex-col text-slate-200">
+                            <!-- ラベル -->
+                            <div class="tracking-wider rounded-md bg-slate-700 border border-slate-600 py-0.5 px-4 text-slate-300 text-sm uppercase mb-1">
+                                <p>member profile</p>
+                            </div>
+
+                            <!-- 名前 -->
+                            <div class="tracking-wider mb-1 text-xs relative w-fit">
+                                <p class="after:absolute after:h-[2px] after:w-full after:bg-slate-100 after:content-[''] after:left-0 after:bottom-0">{user.name}</p>
+                            </div>
+                            <!-- メルアド -->
+                            <div class="tracking-wider text-xs">
+                                <p>{user.email}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 紹介テキスト -->
+                    <div class="leading-relaxed text-sm mb-4">
+                        <p>森の主です。どんぐりが好物で、雨の日はバス停で傘をさして待っています。</p>
+                    </div>
+
+                    <!-- 詳細データエリア -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                        <div class="tracking-wider">
+                            <p class="text-sm"><span class="font-semibold after:content-[':'] text-slate-100">国・地域</span> {user.country}</p>
+                        </div>
+                        <div class="">
+                            <p class="text-sm"><span class="font-semibold after:content-[':'] text-slate-100">年齢</span> {user.age}</p>
+                        </div>
+
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div class="mb-4">
+                        <p>読み込み中です...</p>
+                    </div>
+                </>
+            )}
+            
+            <!-- 戻る -->
+            <div class="text-sm flex justify-center mt-8">
+                <a href="/" class="before:content-['←'] before:mr-1 hover:text-slate-300 hover:underline transition duration-300 ease-in-out">メインページへ戻る</a>
+            </div>
+            
+            
+            
+        </div>
+        
+    </main>
+</Layout>

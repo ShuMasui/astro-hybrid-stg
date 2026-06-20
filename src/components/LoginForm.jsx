@@ -13,10 +13,11 @@ export default function LoginForm() {
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // すでにログインしている場合はダッシュボードへリダイレクト
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const token = await user.getIdToken();
+        document.cookie = `__session=${token}; path=/; max-age=3600; SameSite=Lax; Secure`;
         window.location.href = '/membership/dashboard';
       }
     });
@@ -30,7 +31,10 @@ export default function LoginForm() {
     setMessage(null);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const token = await userCredential.user.getIdToken();
+      document.cookie = `__session=${token}; path=/; max-age=3600; SameSite=Lax; Secure`;
+      
       setMessage('ログインに成功しました。リダイレクト中...');
       window.location.href = '/membership/dashboard';
     } catch (err) {
@@ -47,7 +51,10 @@ export default function LoginForm() {
     setMessage(null);
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const token = await userCredential.user.getIdToken();
+      document.cookie = `__session=${token}; path=/; max-age=3600; SameSite=Lax; Secure`;
+      
       setMessage('アカウント登録が完了しました！ダッシュボードへ移動します。');
       window.location.href = '/membership/dashboard';
     } catch (err) {
@@ -77,16 +84,16 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+    <div className="max-w-md w-full bg-slate-900 border border-slate-850 rounded-xl p-8">
       <div className="text-center mb-8">
-        <span className="px-3 py-1 bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-full text-xs font-bold tracking-wide uppercase">
+        <span className="px-2 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded text-xs font-semibold tracking-wide uppercase">
           Firebase Authentication
         </span>
-        <h1 class="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 mt-3 mb-2">
+        <h1 className="text-2xl font-bold text-slate-100 mt-3 mb-2">
           会員限定ゲートウェイ
         </h1>
         <p className="text-slate-400 text-xs leading-relaxed">
-          ログインするか、メールアドレスとパスワードを入力して新規登録を行ってください。（Authエミュレータに接続されます）
+          ログインするか、メールアドレスとパスワードを入力して新規登録を行ってください。
         </p>
       </div>
 
@@ -99,7 +106,7 @@ export default function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="member@example.com"
-            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/30 outline-none text-slate-100 text-sm transition"
+            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded focus:border-slate-700 outline-none text-slate-100 text-sm transition"
           />
         </div>
 
@@ -111,19 +118,19 @@ export default function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/30 outline-none text-slate-100 text-sm transition"
+            className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded focus:border-slate-700 outline-none text-slate-100 text-sm transition"
           />
         </div>
 
         {error && (
-          <div className="p-3.5 bg-red-950/30 border border-red-800/20 text-red-400 text-xs rounded-xl">
+          <div className="p-3 bg-red-950/20 border border-red-900/30 text-red-400 text-xs rounded">
             ⚠️ {error}
           </div>
         )}
 
         {message && (
-          <div className="p-3.5 bg-emerald-950/30 border border-emerald-800/20 text-emerald-400 text-xs rounded-xl">
-            ✨ {message}
+          <div className="p-3 bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded">
+            {message}
           </div>
         )}
 
@@ -131,7 +138,7 @@ export default function LoginForm() {
           <button 
             onClick={handleSignIn}
             disabled={loading}
-            className="w-full py-3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-500 hover:to-emerald-500 active:scale-98 text-white font-semibold rounded-xl transition shadow-lg shadow-teal-600/10 cursor-pointer text-center text-sm disabled:opacity-50"
+            className="w-full py-2.5 bg-slate-800 hover:bg-slate-750 text-slate-200 font-semibold rounded border border-slate-700 transition cursor-pointer text-center text-sm disabled:opacity-50"
           >
             {loading ? '処理中...' : 'ログインする'}
           </button>
@@ -139,7 +146,7 @@ export default function LoginForm() {
           <button 
             onClick={handleSignUp}
             disabled={loading}
-            className="w-full py-3 bg-slate-800 hover:bg-slate-700 active:scale-98 text-slate-200 font-semibold rounded-xl transition border border-slate-700/60 cursor-pointer text-center text-sm disabled:opacity-50"
+            className="w-full py-2.5 bg-slate-900 hover:bg-slate-850 text-slate-300 font-semibold rounded border border-slate-800 transition cursor-pointer text-center text-sm disabled:opacity-50"
           >
             新規メンバー登録する
           </button>

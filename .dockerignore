@@ -1,0 +1,23 @@
+# ローカルの開発用ライブラリ
+node_modules
+npm-debug.log
+
+# ビルド成果物（Docker内部でビルドするためローカルのものは不要）
+dist
+.astro
+
+# バージョン管理・エディタ関連
+.git
+.gitignore
+.vscode
+.agents
+.gemini
+
+# Firebase関連の設定
+.firebase
+.firebaserc
+firebase.json
+
+# Docker関連自身
+Dockerfile
+.dockerignore

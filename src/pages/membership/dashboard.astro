@@ -1,15 +1,41 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import DashboardComponent from '../../components/Dashboard.jsx';
+import { adminAuth } from '../../lib/firebase-admin';
+
+// SSR（サーバーサイドレンダリング）を強制する設定
+export const prerender = false;
+
+// ブラウザから送信されたクッキー（__session）を取得
+const sessionCookie = Astro.cookies.get('__session')?.value;
+let user = null;
+
+// セッションクッキーが存在しない場合はログインページに即時リダイレクト（HTMLロード前）
+if (!sessionCookie) {
+  return Astro.redirect('/membership/login');
+}
+
+try {
+  // firebase-adminを用いて、サーバーサイドでJWT（IDトークン）をデコード・検証
+  const decodedToken = await adminAuth.verifyIdToken(sessionCookie);
+  
+  // 検証成功したらReactに引き渡すユーザーオブジェクトを準備
+  user = {
+    uid: decodedToken.uid,
+    email: decodedToken.email,
+  };
+} catch (error) {
+  console.error('[Server Admin JWT Verification Failed]:', error);
+  
+  // 不正なトークン、期限切れトークンの場合はクッキーを削除し、ログインページへ
+  Astro.cookies.delete('__session', { path: '/' });
+  return Astro.redirect('/membership/login');
+}
 ---
 
 <Layout>
-  <main class="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
-    <!-- 装飾的な背景の光彩 -->
-    <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-    <!-- React コンポーネントをクライアントロード -->
-    <DashboardComponent client:load />
+  <main class="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-center p-6 font-sans">
+    <!-- サーバー検証済みのユーザー情報をPropsに渡すことでローディングによるチラつきを防止 -->
+    <DashboardComponent client:load serverUser={user} />
   </main>
 </Layout>

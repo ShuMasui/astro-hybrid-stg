@@ -3,82 +3,132 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main class="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-6 relative overflow-hidden font-sans">
+  <main class="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-6 font-sans">
     
-    <!-- バックグラウンドの光彩エフェクト -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-4xl w-full z-10 space-y-12">
+    <div class="max-w-4xl w-full space-y-12">
       <!-- ヘッダー -->
       <div class="text-center space-y-4">
-        <span class="px-4 py-1.5 bg-teal-500/10 text-teal-400 border border-teal-500/20 rounded-full text-xs font-semibold tracking-wider uppercase">
-          Astro 専門レッスンへようこそ
+        <span class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded text-xs font-medium uppercase tracking-wider">
+          Astro 専門レッスン
         </span>
-        <h1 class="text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-400 to-indigo-400">
+        <h1 class="text-4xl font-bold tracking-tight text-slate-100">
           Astro 基礎 ＆ SSR ハンズオン
         </h1>
-        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+        <p class="text-slate-400 text-base max-w-xl mx-auto">
           フロントマターによる静的生成の基礎から、動的なサーバーサイドレンダリング（SSR）の実装までをステップバイステップで学びましょう。
         </p>
       </div>
 
       <!-- カードセクション -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- レッスン1: フロントマターとルーティング -->
-        <a href="/about" class="group block p-6 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-teal-500/50 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-teal-500/5">
+        <!-- レッスン1 -->
+        <a href="/about" class="group block p-6 bg-slate-900 border border-slate-850 hover:border-slate-700 rounded-xl transition-colors duration-200">
           <div class="flex justify-between items-start mb-4">
-            <span class="text-teal-400 font-mono text-sm font-bold uppercase tracking-wider">Lesson 01</span>
-            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/20">
+            <span class="text-slate-400 font-mono text-xs font-bold uppercase tracking-wider">Lesson 01</span>
+            <span class="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs font-medium rounded border border-slate-700">
               公開中
             </span>
           </div>
-          <h3 class="text-xl font-bold text-slate-100 group-hover:text-teal-300 transition-colors mb-2">
+          <h3 class="text-lg font-bold text-slate-100 group-hover:text-white transition-colors mb-2">
             フロントマター ＆ 基礎
           </h3>
           <p class="text-slate-400 text-xs leading-relaxed mb-4">
             Astroの特徴であるフロントマターで定義したJavaScript変数をHTMLテンプレートに埋め込み、動的なページ生成を体験します。
           </p>
-          <div class="text-teal-400 font-semibold text-xs flex items-center group-hover:translate-x-1 transition-transform">
+          <div class="text-slate-300 font-semibold text-xs flex items-center group-hover:text-white">
             レッスンを開始する <span class="ml-1">→</span>
           </div>
         </a>
 
-        <!-- レッスン2: SSR (サーバーサイドレンダリング) -->
-        <a href="/ssr" class="group block p-6 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-indigo-500/5">
+        <!-- レッスン2 -->
+        <a href="/ssr" class="group block p-6 bg-slate-900 border border-slate-850 hover:border-slate-700 rounded-xl transition-colors duration-200">
           <div class="flex justify-between items-start mb-4">
-            <span class="text-indigo-400 font-mono text-sm font-bold uppercase tracking-wider">Lesson 02</span>
-            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/20">
+            <span class="text-slate-400 font-mono text-xs font-bold uppercase tracking-wider">Lesson 02</span>
+            <span class="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs font-medium rounded border border-slate-700">
               公開中
             </span>
           </div>
-          <h3 class="text-xl font-bold text-slate-100 group-hover:text-indigo-300 transition-colors mb-2">
+          <h3 class="text-lg font-bold text-slate-100 group-hover:text-white transition-colors mb-2">
             SSR ＆ React Island
           </h3>
           <p class="text-slate-400 text-xs leading-relaxed mb-4">
             リクエストごとにサーバーでAPIから動的データをフェッチするSSRと、Reactを使ったインタラクティブな「島」を組み合わせます。
           </p>
-          <div class="text-indigo-400 font-semibold text-xs flex items-center group-hover:translate-x-1 transition-transform">
+          <div class="text-slate-300 font-semibold text-xs flex items-center group-hover:text-white">
             レッスンを開始する <span class="ml-1">→</span>
           </div>
         </a>
 
-        <!-- レッスン3: Firebase Authentication -->
-        <a href="/membership/login" class="group block p-6 bg-slate-900 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-emerald-500/5">
+        <!-- レッスン3 -->
+        <a href="/membership/login" class="group block p-6 bg-slate-900 border border-slate-850 hover:border-slate-700 rounded-xl transition-colors duration-200">
           <div class="flex justify-between items-start mb-4">
-            <span class="text-emerald-400 font-mono text-sm font-bold uppercase tracking-wider">Lesson 03</span>
-            <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/20">
+            <span class="text-slate-400 font-mono text-xs font-bold uppercase tracking-wider">Lesson 03</span>
+            <span class="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs font-medium rounded border border-slate-700">
               公開中
             </span>
           </div>
-          <h3 class="text-xl font-bold text-slate-100 group-hover:text-emerald-300 transition-colors mb-2">
+          <h3 class="text-lg font-bold text-slate-100 group-hover:text-white transition-colors mb-2">
             Firebase Auth 認証ゲート
           </h3>
           <p class="text-slate-400 text-xs leading-relaxed mb-4">
             Firebase Authentication を導入し、エミュレータ連携を用いて保護された会員制ページ（ログイン・ダッシュボード）を作成します。
           </p>
-          <div class="text-emerald-400 font-semibold text-xs flex items-center group-hover:translate-x-1 transition-transform">
+          <div class="text-slate-300 font-semibold text-xs flex items-center group-hover:text-white">
+            レッスンを開始する <span class="ml-1">→</span>
+          </div>
+        </a>
+        
+        <!-- レッスン4 -->
+        <a href="/selfpage" class="group block p-6 bg-slate-900 border border-slate-850 hover:border-slate-700 rounded-xl transition-colors duration-200">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-slate-400 font-mono text-xs font-bold uppercase tracking-wider">Lesson 04</span>
+            <span class="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs font-medium rounded border border-slate-700">
+              公開中
+            </span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 group-hover:text-white transition-colors mb-2">
+            自分で新しくページを作ってみよう
+          </h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            自分でページ追加に大切な技術を学んでみよう
+          </p>
+          <div class="mb-1">
+            <ol class="text-slate-400 text-xs leading-relaxed">
+              <li>ページのファイル追加</li>
+              <li>ロジック追加</li>
+              <li>デザイン追加</li>
+            </ol>
+          </div>
+          
+          <div class="text-slate-300 font-semibold text-xs flex items-center group-hover:text-white mt-4">
+            レッスンを開始する <span class="ml-1">→</span>
+          </div>
+        </a>
+
+        <!-- レッスン5 -->
+        <a href="/docker" class="group block p-6 bg-slate-900 border border-slate-850 hover:border-slate-700 rounded-xl transition-colors duration-200">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-slate-400 font-mono text-xs font-bold uppercase tracking-wider">Lesson 05</span>
+            <span class="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs font-medium rounded border border-slate-700">
+              公開中
+            </span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 group-hover:text-white transition-colors mb-2">
+            Docker ＆ クラウドホスティング
+          </h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-4">
+            Astroをコンテナ化し、AWSやGCPの本番サーバーでホスティングするための基本知識を学びます。
+          </p>
+          <div class="mb-1">
+            <ol class="text-slate-400 text-xs leading-relaxed">
+              <li>.dockerignore の役割</li>
+              <li>Dockerfile とビルド</li>
+              <li>クラウド構成の全体像</li>
+            </ol>
+          </div>
+          
+          <div class="text-slate-300 font-semibold text-xs flex items-center group-hover:text-white mt-4">
             レッスンを開始する <span class="ml-1">→</span>
           </div>
         </a>
